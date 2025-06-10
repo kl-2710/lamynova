@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lamynova - AI Technology & Startup HTML Template</title>
+    <meta name="description" content="AIMass Tailwind based SASS Template" />
+
+    <!-- Favicon  -->
+    <link rel="icon" href={% static 'main/assets/img/favicon.png' %} />
+
+    <!-- Site font -->
+    <link href={% static 'main/assets/fonts/fonts.css' %} rel="stylesheet" />
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href={% static 'main/assets/css/vendors/swiper-bundle.min.css' %} />
+    <link rel="stylesheet" href={% static 'main/assets/css/vendors/jos.css' %} />
+    <link rel="stylesheet" href={% static 'main/assets/css/vendors/menu.css' %} />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href={% static 'main/assets/css/custom.css' %} />
+
+    <!-- Development css -->
+    <link href={% static 'main/assets/css/style.css' %} rel="stylesheet" />
+
+    <!-- Production css -->
+    <!-- <link rel="stylesheet" href={% static 'main/assets/css/style.min.css' %}> -->
+</head>
+
+<body>
+    <div class="page-wrapper relative z-[1] bg-white">
+        <!--...::: Header Start :::... -->
+        <header class="site-header site-header--absolute is--white py-3" id="sticky-menu">
+            <div class="global-container">
+                <div class="flex items-center justify-between gap-x-8">
+                    <!-- Header Logo -->
+                    <a href="{% url 'index' %}" class="">
+                        <img src={% static 'main/assets/img/lamynova.png' %} alt="Lamynova" width="150" height="24" />
+                    </a>
+                    <!-- Header Logo -->
+
+                    <!-- Header Navigation -->
+                    <div class="menu-block-wrapper">
+                        <div class="menu-overlay"></div>
+                        <nav class="menu-block" id="append-menu-header">
+                            <div class="mobile-menu-head">
+                                <div class="go-back">
+                                    <img class="dropdown-icon" src={% static 'main/assets/img/icon-black-long-arrow-right.svg' %}
+                                        alt="cheveron-right" width="16" height="16" />
+                                </div>
+                                <div class="current-menu-title"></div>
+                                <div class="mobile-menu-close">&times;</div>
+                            </div>
+                            <ul class="site-menu-main">
+                                <li class="nav-item">
+                                    <a href="{% url 'index' %}" class="nav-link-item">Trang chủ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'about' %}" class="nav-link-item">Giới thiệu</a>
+                                </li>
+                                <li class="nav-item nav-item-has-children">
+                                    <a href="{% url 'services' %}" class="nav-link-item drop-trigger">Dịch vụ
+                                        <img class="dropdown-icon" src={% static 'main/assets/img/icon-black-cheveron-right.svg' %}
+                                            alt="cheveron-right" width="16" height="16" /></a>
+                                    <ul class="sub-menu" id="submenu-3">
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'service 1' %}" data-menu-get="h3" class="drop-trigger">Thiết kế UX/UI
+                                            </a>
+                                        </li>
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'service 2' %}" data-menu-get="h3" class="drop-trigger">Phát triển game
+                                            </a>
+                                        </li>
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'service 3' %}" data-menu-get="h3" class="drop-trigger">Sản xuất nội dung số
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item nav-item-has-children">
+                                    <a href="#" class="nav-link-item drop-trigger">Các trang
+                                        <img class="dropdown-icon" src={% static 'main/assets/img/icon-black-cheveron-right.svg' %}
+                                            alt="cheveron-right" width="16" height="16" /></a>
+                                    <ul class="sub-menu" id="submenu-3">
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'blog' %}" data-menu-get="h3" class="drop-trigger">Tin tức và bài viết
+                                            </a>
+                                        </li>
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'faq' %}" data-menu-get="h3" class="drop-trigger">Những câu hỏi thường gặp
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'contact' %}" class="nav-link-item">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Header Navigation -->
+
+                    <!-- Header User Event -->
+                    <div class="flex items-center gap-6">
+                        <a href="{% url 'login' %}"
+                            class="button hidden rounded-[50px] border-[#7F8995] bg-transparent text-black after:bg-colorOrangyRed hover:border-colorOrangyRed hover:text-white lg:inline-block">Đăng nhập</a>
+                        <a href="{% url 'signup' %}"
+                            class="button hidden rounded-[50px] border-black bg-black text-white after:bg-colorOrangyRed hover:border-colorOrangyRed hover:text-white lg:inline-block">Đăng ký</a>
+                        <!-- Responsive Offcanvas Menu Button -->
+                        <div class="block lg:hidden">
+                            <button id="openBtn" class="hamburger-menu mobile-menu-trigger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Header User Event -->
+                </div>
+            </div>
+        </header>
+        <!--...::: Header End :::... -->
+
+        <main class="main-wrapper relative overflow-hidden">
+            <!--...::: Login Section Start :::... -->
+            <section id="signup-success-section">
+                <!-- Section Spacer -->
+                <div class="py-40 pt-36 xl:pb-[200px] xl:pt-[180px]">
+                    <!-- Section Container -->
+                    <div class="global-container">
+                        <div class="mx-auto max-w-[910px] text-center">
+                            <h1 style="font-size: 90px" class="mb-[50px]">Đăng ký thành công!</h1>
+                            
+                            {% if messages %}
+                                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-8" role="alert">
+                                    <p class="font-bold">Thông báo:</P>
+                                    {% for message in messages %}
+                                        <p>{{ message }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            <a  href="{% url 'login' %}"
+                                class="button rounded-[50px] border-2 border-black bg-black py-4 text-white after:bg-colorOrangyRed hover:border-colorOrangyRed hover:text-white">
+                                Đăng nhập ngay
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Section Container -->
+                </div>
+                <!-- Section Spacer -->
+            </section>
+            <!--...::: Login Section End :::... -->
+        </main>
+    </div>
+
+    <!--Vendor js-->
+    <script src={% static 'main/assets/js/vendors/counterup.js' %} type="module"></script>
+    <script src={% static 'main/assets/js/vendors/swiper-bundle.min.js' %}></script>
+    <script src={% static 'main/assets/js/vendors/fslightbox.js' %}></script>
+    <script src={% static 'main/assets/js/vendors/jos.min.js' %}></script>
+    <script src={% static 'main/assets/js/vendors/menu.js' %}></script>
+
+    <!-- Main js -->
+    <script src={% static 'main/assets/js/main.js' %}></script>
+</body>
+
+</html>

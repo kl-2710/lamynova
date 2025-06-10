@@ -1,0 +1,423 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lamynova - Dịch vụ</title>
+    <meta name="description" content="AIMass Tailwind based SASS Template" />
+
+    <!-- Favicon  -->
+    <link rel="icon" href={% static 'main/assets/img/favicon.png' %} />
+
+    <!-- Site font -->
+    <link href={% static 'main/assets/fonts/fonts.css' %} rel="stylesheet" />
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href={% static 'main/assets/css/vendors/swiper-bundle.min.css' %} />
+    <link rel="stylesheet" href={% static 'main/assets/css/vendors/jos.css' %} />
+    <link rel="stylesheet" href={% static 'main/assets/css/vendors/menu.css' %} />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href={% static 'main/assets/css/custom.css' %} />
+
+    <!-- Development css -->
+    <link href={% static 'main/assets/css/style.css' %} rel="stylesheet" />
+
+    <!-- Production css -->
+    <!-- <link rel="stylesheet" href={% static 'main/assets/css/style.min.css' %}> -->
+</head>
+
+<body>
+    <div class="page-wrapper relative z-[1] bg-white">
+        <!--...::: Header Start :::... -->
+        <header class="site-header site-header--absolute is--white py-3" id="sticky-menu">
+            <div class="global-container">
+                <div class="flex items-center justify-between gap-x-8">
+                    <!-- Header Logo -->
+                    <a href="{% url 'index' %}" class="">
+                        <img src={% static 'main/assets/img/lamynova.png' %} alt="Lamynova" width="150" height="24" />
+                    </a>
+                    <!-- Header Logo -->
+
+                    <!-- Header Navigation -->
+                    <div class="menu-block-wrapper">
+                        <div class="menu-overlay"></div>
+                        <nav class="menu-block" id="append-menu-header">
+                            <div class="mobile-menu-head">
+                                <div class="go-back">
+                                    <img class="dropdown-icon" src={% static 'main/assets/img/icon-black-long-arrow-right.svg' %}
+                                        alt="cheveron-right" width="16" height="16" />
+                                </div>
+                                <div class="current-menu-title"></div>
+                                <div class="mobile-menu-close">&times;</div>
+                            </div>
+                            <ul class="site-menu-main">
+                                <li class="nav-item">
+                                    <a href="{% url 'index' %}" class="nav-link-item">Trang chủ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'about' %}" class="nav-link-item">Giới thiệu</a>
+                                </li>
+                                <li class="nav-item nav-item-has-children">
+                                    <a href="{% url 'services' %}" class="nav-link-item drop-trigger">Dịch vụ
+                                        <img class="dropdown-icon" src={% static 'main/assets/img/icon-black-cheveron-right.svg' %}
+                                            alt="cheveron-right" width="16" height="16" /></a>
+                                    <ul class="sub-menu" id="submenu-3">
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'service 1' %}" data-menu-get="h3" class="drop-trigger">Thiết kế UX/UI
+                                            </a>
+                                        </li>
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'service 2' %}" data-menu-get="h3" class="drop-trigger">Phát triển game
+                                            </a>
+                                        </li>
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'service 3' %}" data-menu-get="h3" class="drop-trigger">Sản xuất nội dung số
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item nav-item-has-children">
+                                    <a href="{% url 'pages' %}" class="nav-link-item drop-trigger">Các trang
+                                        <img class="dropdown-icon" src={% static 'main/assets/img/icon-black-cheveron-right.svg' %}
+                                            alt="cheveron-right" width="16" height="16" /></a>
+                                    <ul class="sub-menu" id="submenu-3">
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'blog' %}" data-menu-get="h3" class="drop-trigger">Tin tức và bài viết
+                                            </a>
+                                        </li>
+                                        <li class="sub-menu--item">
+                                            <a href="{% url 'faq' %}" data-menu-get="h3" class="drop-trigger">Những câu hỏi thường gặp
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'contact' %}" class="nav-link-item">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Header Navigation -->
+
+                    <!-- Header User Event -->
+                    <div class="flex items-center gap-6 relative">
+                        {% if user.is_authenticated %}
+                            <div class="relative">
+                                <button id="avatarButton" class="w-10 h-10 rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-colorOrangyRed">
+                                    {% if user.email %}
+                                        <img src="https://ui-avatars.com/api/?name={{ user.first_name }}+{{ user.last_name}}&background=E99F48&color=ffffff&bold=true" alt="Avatar" class="w-full h-full object-cover">
+                                    {% else %}
+                                        {# Fallback if no email, use username or a default #}
+                                        <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=E99F48&color=ffffff&bold=true" alt="Avatar" class="w-full h-full object-cover">
+                                    {% endif %}
+                                </button>
+
+                                <div id="userDropdown" class="absolute right-0 mt-2 bg-white rounded-[10px] shadow-xl py-4 z-20 hidden" style="width: 300px;">
+                                    <div class="px-6 flex flex-col items-center">
+                                        <div class="w-20 h-20 rounded-full overflow-hidden mb-3 border-2 border-gray-200">
+                                            {% if user.email %}
+                                                <img src="https://ui-avatars.com/api/?name={{ user.first_name }}+{{ user.last_name }}&background=E99F48&color=ffffff&bold=true&size=160" alt="Avatar" class="w-full h-full object-cover">
+                                            {% else %}
+                                                <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=E99F48&color=ffffff&bold=true&size=160" alt="Avatar" class="w-full h-full object-cover">
+                                            {% endif %}
+                                        </div>
+                                        <p class="font-bold text-lg text-gray-800">{{ user.username }}</p>
+                                        <p class="text-sm text-gray-600 mb-4">{{ user.email }}</p>
+                                    </div>
+                                    
+                                    <a href="{% url 'password_reset' %}" class="px-4 py-4 text-sm text-center text-colorOrangyRed border-colorOrangyRed hover:bg-colorOrangyRed hover:text-white transition-colors duration-200 block p-2 text-decoration-none text-[#333]">
+                                            Đổi mật khẩu
+                                        </a>
+                                    <a href="{% url 'logout' %}" class="px-4 py-4 text-sm text-center text-colorOrangyRed border-colorOrangyRed hover:bg-colorOrangyRed hover:text-white transition-colors duration-200 block p-2 text-decoration-none text-[#333]">
+                                        {# Bạn có thể thêm icon ở đây, ví dụ: <img src="{% static 'path/to/logout-icon.svg' %}" class="mr-2 w-5 h-5"> #}
+                                        Đăng xuất
+                                    </a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <a href="{% url 'login' %}"
+                                class="button hidden rounded-[50px] border-[#7F8995] bg-transparent text-black after:bg-colorOrangyRed hover:border-colorOrangyRed hover:text-white lg:inline-block">Đăng nhập</a>
+                            <a href="{% url 'signup' %}"
+                                class="button hidden rounded-[50px] border-black bg-black text-white after:bg-colorOrangyRed hover:border-colorOrangyRed hover:text-white lg:inline-block">Đăng ký</a>
+                            {% endif %}
+                            <!-- Responsive Offcanvas Menu Button -->
+                            <div class="block lg:hidden">
+                                <button id="openBtn" class="hamburger-menu mobile-menu-trigger">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                    </div>
+                    <!-- Header User Event -->
+                </div>
+            </div>
+        </header>
+        <!--...::: Header End :::... -->
+        <main class="main-wrapper relative overflow-hidden">
+            <!--...::: Breadcrumb Section Start :::... -->
+            <section id="section-breadcrumb">
+                <!-- Section Spacer -->
+                <div class="breadcrumb-wrapper">
+                    <!-- Section Container -->
+                    <div class="global-container">
+                        <div class="breadcrumb-block">
+                            <h1 class="breadcrumb-title">Tin tức và bài viết</h1>
+                            <ul class="breadcrumb-nav">
+                                <li><a href="{% url 'index' %}">Trang chủ</a></li>
+                                <li><a href="{% url 'pages' %}">Các trang</a></li>
+                                <li>Tin tức và bài viết</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Section Container -->
+                </div>
+                <!-- Section Spacer -->
+            </section>
+            <!--...::: Breadcrumb Section End :::... -->
+
+            <!--...::: Blog Section Start :::... -->
+            <section class="blog-section">
+                <!-- Section Spacer -->
+                <div class="pb-40 xl:pb-[220px]">
+                    <!-- Section Container -->
+                    <div class="global-container">
+                        <div class="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-[1fr,minmax(416px,_0.45fr)]">
+                            <div class="flex flex-col gap-y-10 lg:gap-y-14 xl:gap-y-20">
+                                <!-- Blog Post List -->
+                                <ul class="grid grid-cols-2 gap-6 [grid-auto-rows:1fr]">
+                                    {% if posts %}
+                                      {% for post in posts %}
+                                        <li class="post-item jos group overflow-hidden rounded-[10px] bg-white shadow-[0_4px_80px_rgba(0,0,0,0.08)]">
+                                          <div class="w-full h-[220px] overflow-hidden rounded-[10px]">
+                                            <a href="{% url 'blog_details' slug=post.slug %}">
+                                              {% if post.image %}
+                                                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="h-full w-full object-cover" />
+                                              {% else %}
+                                                <img src="{% static 'main/assets/img/default-blog-image.jpg' %}" alt="Default Blog Image" class="h-full w-full object-cover" />
+                                              {% endif %}
+                                            </a>
+                                          </div>
+                                          <div class="border border-b-0 border-[#EAEDF0] p-[30px]">
+                                            <ul class="flex flex-wrap items-center gap-6">
+                                              <li><a href="{% url 'blog_details' slug=post.slug %}">Tin tức chung</a></li>
+                                              <li><a href="{% url 'blog_details' slug=post.slug %}">{{ post.published_date|date:"d/m/Y" }}</a></li>
+                                            </ul>
+                                            <h5><a href="{% url 'blog_details' slug=post.slug %}">{{ post.title }}</a></h5>
+                                            <p>{{ post.excerpt }}</p>
+                                          </div>
+                                        </li>
+                                      {% endfor %}
+                                    {% else %}
+                                      <p>Hiện chưa có bài viết nào được công bố.</p>
+                                    {% endif %}
+                                  </ul>
+                                 
+                                  
+                                <!-- Blog Post List -->
+                              
+                                <!-- Pagination -->
+                            </div>
+                            <!-- Blog Aside -->
+                            <aside class="jos flex flex-col gap-y-[30px]">
+                                <!-- Single Sidebar -->
+                                <div>
+                                    <!-- Sidebar Search -->
+                                    <form action="#" method="post" class="relative h-[60px]">
+                                        <input type="search" name="sidebar-search" id="sidebar-search"
+                                            placeholder="Type to search..."
+                                            class="h-full w-full rounded-[50px] border border-[#E1E1E1] bg-white py-[15px] pl-16 pr-8 text-lg outline-none transition-all focus:border-colorOrangyRed"
+                                            required />
+                                        <button type="submit" class="absolute left-[30px] top-0 h-full">
+                                            <img src={% static 'main/assets/img/th-1/icon-black-search.svg' %} alt="search" width="20"
+                                                height="20" />
+                                        </button>
+                                    </form>
+                                    <!-- Sidebar Search -->
+                                </div>
+                                <!-- Single Sidebar -->
+    
+                              
+                                
+                            </aside>
+                            <!-- Blog Aside -->
+                        </div>
+                    </div>
+                    <!-- Section Container -->
+                </div>
+                <!-- Section Spacer -->
+            </section>
+            <!--...::: Blog Section End :::... -->
+        </main>
+
+       <!--...::: Footer Section Start :::... -->
+       <footer
+       class="relative z-[1] -mt-[70px] overflow-hidden rounded-tl-[30px] rounded-tr-[30px] bg-colorLinenRuffle lg:rounded-tl-[50px] lg:rounded-tr-[50px]">
+       <!-- Footer Top -->
+       <div class="py-[60px] xl:pb-[100px] xl:pt-[130px]">
+           <div class="overflow-hidden">
+               <!-- Footer Text Slider -->
+               <div class="footer-text-slider flex w-full items-center gap-x-[30px] whitespace-nowrap">
+                   <!-- Footer Slide Item  -->
+                   <img src={% static 'main/assets/img/th-1/footer-text-slider-icon.svg' %} alt="footer-text-slider-icon" width="60"
+                       height="60" class="h-10 w-10 lg:h-[60px] lg:w-[60px]" />
+                   <div
+                       class="block font-dmSans text-4xl font-bold leading-none -tracking-[2px] text-black lg:text-6xl xl:text-7xl xxl:text-[80px]">
+                       Bắt đầu hành trình kiến tạo phần mềm đột phá
+                   </div>
+                   <!-- Footer Slide Item  -->
+                   <!-- Footer Slide Item  -->
+                   <img src={% static 'main/assets/img/th-1/footer-text-slider-icon.svg' %} alt="footer-text-slider-icon" width="60"
+                       height="60" class="h-10 w-10 lg:h-[60px] lg:w-[60px]" />
+                   <div
+                       class="block font-dmSans text-4xl font-bold leading-none -tracking-[2px] text-black lg:text-6xl xl:text-7xl xxl:text-[80px]">
+                       Bắt đầu hành trình kiến tạo phần mềm đột phá
+                   </div>
+                   <!-- Footer Slide Item  -->
+                   <!-- Footer Slide Item  -->
+                   <img src={% static 'main/assets/img/th-1/footer-text-slider-icon.svg' %} alt="footer-text-slider-icon" width="60"
+                       height="60" class="h-10 w-10 lg:h-[60px] lg:w-[60px]" />
+                   <div
+                       class="block font-dmSans text-4xl font-bold leading-none -tracking-[2px] text-black lg:text-6xl xl:text-7xl xxl:text-[80px]">
+                       Bắt đầu hành trình kiến tạo phần mềm đột phá
+
+                   </div>
+                   <!-- Footer Slide Item  -->
+               </div>
+           </div>
+       </div>
+       <!-- Footer Text Slider -->
+       <!-- Footer Top -->
+       <div class="global-container">
+           <div class="h-[1px] w-full bg-[#DBD6CF]"></div>
+           <!-- Footer Center -->
+           <div
+               class="lg grid grid-cols-1 gap-10 py-[60px] md:grid-cols-[1fr_auto_auto] xl:grid-cols-[1fr_auto_auto_1fr] xl:gap-20 xl:py-[100px]">
+               <!-- Footer Widget -->
+               <div class="flex flex-col gap-y-6">
+                   <a href="{% url 'index' %}" class="inline-block"><img src={% static 'main/assets/img/lamynova.png' %} alt="logo"
+                           width="150" height="24" /></a>
+                   <p>
+                       LAMYNOVA là công ty chuyên phát triển và ứng dụng các công nghệ sáng tạo và chuyển đổi số nhằm mang lại giải pháp hiện đại, nâng cao trải nghiệm vượt trội cho khách hàng và đối tác
+                   </p>
+                   <p>
+                       Website: <a href="https://www.example.com">www.example.com</a>
+                   </p>
+               </div>
+               <!-- Footer Widget -->
+
+               <!-- Footer Widget -->
+               <div class="flex flex-col gap-y-6">
+                   <!-- Footer Title -->
+                   <h4 class="text-[21px] font-semibold capitalize text-black">
+                       Các trang chính 
+                   </h4>
+                   <!-- Footer Title -->
+
+                   <!-- Footer Navbar -->
+                   <ul class="flex flex-col gap-y-[10px] capitalize">
+                       <li>
+                           <a href="{% url 'index' %}"
+                               class="transition-all duration-300 ease-linear hover:text-colorOrangyRed">Trang chủ</a>
+                       </li>
+                       <li>
+                           <a href="{% url 'about' %}"
+                               class="transition-all duration-300 ease-linear hover:text-colorOrangyRed">Giới thiệu</a>
+                       </li>
+                       <li>
+                           <a href="{% url 'services' %}"
+                               class="transition-all duration-300 ease-linear hover:text-colorOrangyRed">Dịch vụ</a>
+                       </li>
+                       <li>
+                           <a href="{% url 'pages' %}"
+                               class="transition-all duration-300 ease-linear hover:text-colorOrangyRed">Các trang</a>
+                       </li>
+                       <li>
+                           <a href="{% url 'contact' %}"
+                               class="transition-all duration-300 ease-linear hover:text-colorOrangyRed">Liên hệ</a>
+                       </li>
+                   </ul>
+               </div>
+               <!-- Footer Widget -->
+
+               <!-- Footer Widget -->
+               <div class="flex flex-col gap-y-6">
+                   <!-- Footer Title -->
+                   <h4 class="text-[21px] font-semibold capitalize text-black">
+                       Truy cập 
+                   </h4>
+                   <!-- Footer Title -->
+
+                   <!-- Footer Navbar -->
+                   <ul class="flex flex-col gap-y-[10px] capitalize">
+                       <li>
+                           <a href="{% url 'signup' %}"
+                               class="transition-all duration-300 ease-linear hover:text-colorOrangyRed">Đăng kí</a>
+                       </li>
+                       <li>
+                           <a href="{% url 'login' %}"
+                               class="transition-all duration-300 ease-linear hover:text-colorOrangyRed">Đăng nhập</a>
+                       </li>
+                   </ul>
+               </div>
+               <!-- Footer Widget -->
+
+               <!-- Footer Widget -->
+               <div class="flex flex-col gap-y-6">
+                   <!-- Footer Title -->
+                   <h4 class="text-[21px] font-semibold capitalize text-black">
+                       Hãy đăng ký để nhận thêm thông tin! 
+                   </h4>
+                   <!-- Footer Title -->
+                   
+               </div>
+               <!-- Footer Widget -->
+           </div>
+           <!-- Footer Center -->
+           <div class="h-[1px] w-full bg-[#DBD6CF]"></div>
+           <!-- Footer Bottom -->
+           <div class="py-9 text-center">
+               <p>&copy; 2025, Lamynova</p>
+           </div>
+           <!-- Footer Bottom -->
+       </div>
+
+       <!-- Footer Background Shape 1  -->
+       <div
+           class="orange-gradient-2 absolute -top-[290px] right-[90px] -z-[1] h-[406px] w-[406px] -rotate-[58deg] rounded-[406px]">
+       </div>
+
+       <!-- Footer Background Shape 2  -->
+       <div
+           class="orange-gradient-1 absolute -right-[200px] -top-[205px] -z-[1] h-[451px] w-[451px] -rotate-[58deg] rounded-[451px]">
+       </div>
+   </footer>
+   <!--...::: Footer Section End :::... -->
+</div>
+
+<!--Vendor js-->
+<script src={% static 'main/assets/js/vendors/counterup.js' %} type="module"></script>
+<script src={% static 'main/assets/js/vendors/swiper-bundle.min.js' %}></script>
+<script src={% static 'main/assets/js/vendors/fslightbox.js' %}></script>
+<script src={% static 'main/assets/js/vendors/jos.min.js' %}></script>
+<script src={% static 'main/assets/js/vendors/menu.js' %}></script>
+
+<!-- Main js -->
+<script src={% static 'main/assets/js/main.js' %}></script>
+<script>
+    document.getElementById("sidebar-search").addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      const posts = document.querySelectorAll(".post-item");
+  
+      posts.forEach((post) => {
+        const text = post.textContent.toLowerCase();
+        post.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+
+</html>
