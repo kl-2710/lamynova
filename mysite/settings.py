@@ -153,5 +153,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Cấu hình CSRF_TRUSTED_ORIGINS để chấp nhận request từ tên miền của Render
-CSRF_TRUSTED_ORIGINS = ['https://*.render.com', 'https://your-app-name.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.render.com', 'https://Lamynova.onrender.com']
 # Thay 'your-app-name' bằng tên app thực tế của bạn trên Render
