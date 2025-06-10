@@ -26,7 +26,7 @@ urlpatterns = [
     path('dichvu/', include('qldichvu.urls')),
     path('user/', include('qluser.urls')),
     path('', include('trangchu.urls')),
-    path('cactrang/', include('cactrang.urls')),
+    path('baiviet/', include('cactrang.urls')),
     path('lienhe/', include('qliphanhoi.urls')),
     path('dashboard/', include('dashboard.urls')),
 ]
